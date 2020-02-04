@@ -3,7 +3,7 @@ on:
   pull_request:
     types: closed
 jobs:
-  if: github.event_name == 'pull_request' && github.event.action == 'unassigned'
+  - if: github.event_name == 'pull_request' && github.event.action == 'unassigned' && github.event.action.merged == true
   build:
     runs-on: ubuntu-latest
     steps:
