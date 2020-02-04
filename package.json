@@ -1,0 +1,11 @@
+{
+  "name": "gh-actions-npm",
+  "version": "1.0.1",
+  "description": "testing GH actions to bump and publish npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Nothing to test\""
+  },
+  "author": "",
+  "license": "MIT"
+}

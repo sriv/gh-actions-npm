@@ -1,0 +1,21 @@
+name: Node.js CI
+
+on:
+  pull_request:
+    types: closed
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.action.merged == true
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm test
+      env:
+        CI: true
