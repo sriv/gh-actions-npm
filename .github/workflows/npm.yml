@@ -1,14 +1,12 @@
 name: Node.js CI
-
-on: [pull_request]
-
+on: 
+  pull_request:
+    types: closed
 jobs:
+  if: github.event_name == 'pull_request' && github.event.action == 'unassigned'
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.action.merged == true
     - uses: actions/checkout@v2
     - name: Use Node.js 12
       uses: actions/setup-node@v1
@@ -17,3 +15,12 @@ jobs:
     - run: npm test
       env:
         CI: true
+  bump-version:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
