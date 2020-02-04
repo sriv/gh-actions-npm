@@ -4,7 +4,7 @@ on:
     types: closed
 jobs:
   build:
-    if: github.event_name == 'pull_request' && github.event.action == 'unassigned' && github.event.action.merged == true
+    if: github.event_name == 'pull_request' && github.event.action == 'unassigned' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
       env:
         CI: true
   bump-version:
-    if: github.event_name == 'pull_request' && github.event.action == 'unassigned' && github.event.action.merged == true
+    if: github.event_name == 'pull_request' && github.event.action == 'unassigned' && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
